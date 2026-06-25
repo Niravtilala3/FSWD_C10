@@ -3,8 +3,12 @@ const app = express();
 const userRoute = require('./route/userRoute');
 const empRoute = require('./route/empRoute');
 
+app.set('view engine', 'pug');
+app.set('views', './views');
+
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.render('index');
+  // res.send('Hello World!');
 });
 
 app.post('/', (req, res) => {
