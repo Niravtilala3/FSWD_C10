@@ -6,6 +6,8 @@ const empRoute = require('./routes/empRoute');
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
   res.render('index', { title: 'C10 expressApp', message: 'Welcome to the C10 expressApp!'});
   // res.send('Hello World!');
