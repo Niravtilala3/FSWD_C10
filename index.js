@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const userRoute = require('./route/userRoute');
-const empRoute = require('./route/empRoute');
+const userRoute = require('./routes/userRoute');
+const empRoute = require('./routes/empRoute');
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
