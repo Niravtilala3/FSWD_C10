@@ -6,6 +6,7 @@ const empRoute = require('./routes/empRoute');
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+app.use(express.json());
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
@@ -43,6 +44,6 @@ app.use((req, res, next) => {
   res.status(404).send('Sorry cant find that!');
 });
 
-app.listen(3000,()=>{
-  console.log('Server is running on port http://localhost:3000');
+app.listen(3300,()=>{
+  console.log('Server is running on port http://localhost:3300');
 });
