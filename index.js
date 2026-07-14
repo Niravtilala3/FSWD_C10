@@ -1,12 +1,19 @@
 const express = require('express');
 const app = express();
+
+const mongoose = require('mongoose');
+
+const mongoUri = 'mongodb://127.0.0.1:27017/FSWD_C10';
+
 const userRoute = require('./routes/userRoute');
 const empRoute = require('./routes/empRoute');
+const studentRoute = require('./routes/studentRoute');
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 app.set('views', './views');
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
@@ -25,6 +32,7 @@ app.post('/', (req, res) => {
 
 app.use('/user', userRoute);
 app.use('/emp', empRoute);
+app.use('/student', studentRoute);
 
 
 // Error handling middleware
@@ -44,6 +52,18 @@ app.use((req, res, next) => {
   res.status(404).send('Sorry cant find that!');
 });
 
-app.listen(3300,()=>{
-  console.log('Server is running on port http://localhost:3300');
-});
+const startServer = async () => {
+  try {
+    await mongoose.connect(mongoUri);
+    console.log('Connected to MongoDB');
+
+    app.listen(`3300`,()=>{
+      console.log('Server is running on port http://localhost:3300');
+    });
+  } catch (error) {
+    console.error('MongoDB connection failed:', error.message);
+    process.exit(1);
+  }
+}
+
+startServer();

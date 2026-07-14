@@ -1,0 +1,16 @@
+html
+    head
+        title New Student
+    body
+        h1 New Student
+        form(method="POST" action="/student")
+            div
+                label(for="name") Name:
+                input(type="text" id="name" name="name")
+            div
+                label(for="age") Age:
+                input(type="number" id="age" name="age")
+            div
+                label(for="email") Email:
+                input(type="email" id="email" name="email")
+            button(type="submit") Add Student
