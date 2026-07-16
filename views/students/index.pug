@@ -7,3 +7,8 @@ html
             each student in students
                 li= student.name + ' - ' + student.age + ' - ' + student.email
                 a(href=`/student/${student._id}`) View Details
+                br  
+                a(href=`/student/${student._id}/edit`) Edit
+                br
+                form(action=`/student/${student._id}/delete`, method='POST', style='display:inline')
+                    button(type='submit') Delete
