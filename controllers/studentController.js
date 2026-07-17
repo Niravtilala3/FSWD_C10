@@ -11,16 +11,21 @@ studentController.getNewStudentForm = async (req, res) => {
 }
 
 studentController.createStudent = async (req, res) => {
-    // const { name, age, email } = req.body;
-    // const newStudent = new Student({ name, age, email });
-    // await newStudent.save();
-
-    const student = await Student.create({
-        name: req.body.name,
-        age: req.body.age,
-        email: req.body.email   
-    });
-    res.redirect('/student');
+    try {
+        const student = await Student.create({
+            name: req.body.name,
+            age: req.body.age,
+            email: req.body.email,
+            gender: req.body.gender  
+        });
+        res.redirect('/student');
+    } catch (error) {
+        if (error.name === 'ValidationError') {
+            res.status(400).render('students/new', { title: 'Create Student', errors: error.errors });
+        } else {
+            next(error);
+        }
+    } 
 };
 
 studentController.getStudentById =  async (req, res) => {

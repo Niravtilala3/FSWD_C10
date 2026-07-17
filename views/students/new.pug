@@ -12,5 +12,21 @@ html
                 input(type="number" id="age" name="age")
             div
                 label(for="email") Email:
-                input(type="email" id="email" name="email")
+                input(type="text" id="email" name="email")
+
+            div
+                label(for="gender") Gender
+                select(id="gender" name="gender")
+                    option(value="") Select Gender
+                    option(value="male")
+                        | Male
+                    option(value="female")
+                        | Female
+                    option(value="other")
+                        | Other
             button(type="submit") Add Student
+            div
+                if errors
+                    ul
+                        each error in errors
+                            li= error.message
